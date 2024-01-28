@@ -3,15 +3,21 @@ project(abby)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(ROOT_DIR ${PROJECT_SOURCE_DIR})
-set(INCLUDE_DIR ${ROOT_DIR}/include)
+if (NOT DEFINED ABBY_TEST)
+    SET(ABBY_TEST 1)
+endif ()
 
+
+set(ABBY_ROOT_DIR ${PROJECT_SOURCE_DIR})
+set(ABBY_INCLUDE_DIR ${ABBY_ROOT_DIR}/include)
 set(ABBY_LIB_TARGET abby)
 set(ABBY_TEST_TARGET abby-test)
 
 set(SOURCE_FILES
-        include/abby.hpp)
+    include/abby.hpp)
 
 add_library(${ABBY_LIB_TARGET} INTERFACE)
 
-add_subdirectory(test)
+if (${ABBY_TEST})
+    add_subdirectory(test)
+endif()
