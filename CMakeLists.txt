@@ -18,6 +18,10 @@ set(SOURCE_FILES
 
 add_library(${ABBY_LIB_TARGET} INTERFACE)
 
+target_include_directories(${ABBY_LIB_TARGET} INTERFACE
+    $<BUILD_INTERFACE:${ABBY_INCLUDE_DIR}>
+    $<INSTALL_INTERFACE:include>)
+    
 if (${ABBY_TEST})
     add_subdirectory(test)
 endif()
